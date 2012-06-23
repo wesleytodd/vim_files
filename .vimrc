@@ -21,13 +21,13 @@ endif
 
 
 let g:netrw_liststyle=3 " Use tree-mode as default view
-let g:netrw_browse_split=4 " Open file in previous buffer
+"let g:netrw_browse_split=4 " Open file in previous buffer
 let g:netrw_preview=1 " preview window shown in a vertically split
 
 " clear search with spacebar
 nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 " normal mode with kj
-:imap kj <Esc>
+imap kj <Esc>
 " navigate splits
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -36,6 +36,12 @@ map <C-l> <C-w>l
 
 map <C-m> gt
 map <C-n> gT
+
+" open file in split to right
+map oo o<C-w>L
+" expand current vert split to full width
+map ff <C-w><Bar>
+
 " PHP comment out line
 let @c='0i//^['
 
