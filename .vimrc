@@ -43,7 +43,7 @@ map oo o<C-w>L
 map ff <C-w><Bar>
 
 " PHP comment out line
-let @c='0i//^['
+let @c='0i//'
 
 " calculator in insert mode
 imap <silent> <C-C> <C-R>=string(eval(input("Calculate: ")))<CR> 
