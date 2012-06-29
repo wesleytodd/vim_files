@@ -4,6 +4,10 @@ set t_Co=256
 let g:solarized_termcolors=256
 colorscheme solarized
 
+" Spell check
+set spell
+setlocal spellfile+=~/.vim/spell/en.utf-8.add
+
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
   " Enable file type detection
@@ -19,31 +23,12 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 endif
 
-
-let g:netrw_liststyle=3 " Use tree-mode as default view
-"let g:netrw_browse_split=4 " Open file in previous buffer
-let g:netrw_preview=1 " preview window shown in a vertically split
-
-" clear search with spacebar
-nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
 " normal mode with kj
 imap kj <Esc>
-" navigate splits
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
+"navigate tabs
 map <C-m> gt
 map <C-n> gT
-
-" open file in split to right
-map oo o<C-w>L
-" expand current vert split to full width
-map ff <C-w><Bar>
-
-" PHP comment out line
-let @c='0i/*$A*/0'
 
 " Insert mode then line feed then normal mode
 let @e='i'
@@ -66,12 +51,47 @@ set autochdir
 " jumps to search word as you type
 set incsearch
 
-" Indents code
-set smartindent
+map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
+imap <silent> <C-C> <C-R>=string(eval(input("Calculate: ")))<CR>
+
+" Window and file Managment 
+"{
+    " Use tree-mode as default view
+    let g:netrw_liststyle=3 
+
+    " preview window shown in a vertically split
+    let g:netrw_preview=1 
+
+    " navigate splits
+    map <C-h> <C-w>h
+    map <C-j> <C-w>j
+    map <C-k> <C-w>k
+    map <C-l> <C-w>l
+
+    " open file in split to right
+    map oo o<C-w>L
+
+    " expand current vert split to full width
+    map ff <C-w><Bar>
+"}
+
+" Plugins
+"{
+    " Comments plugin
+    source ~/.vim/plugins/comments.vim
+"}
+
+" Comment Block formating
+"{
+    " auto format comment blocks
+    set comments=sl:/**,mb:\ *,elx:\ */
+    set formatoptions+=r
+"}
 
 " Below from - https://github.com/spf13/spf13-vim/blob/master/.vimrc 
 
-" Vim UI {
+" Vim UI 
+"{
 	set tabpagemax=15 				" only show 15 tabs
 	set showmode                   	" display the current mode
 
@@ -103,16 +123,16 @@ set smartindent
 	set list
 	set listchars=tab:>.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
 	set invlist
-
 " }
 
-" Formatting {
+" Formatting 
+"{
 	set nowrap                     	" wrap long lines
 	set autoindent                 	" indent at the same level of the previous line
+    set smartindent
 	set shiftwidth=4               	" use indents of 4 spaces
    	set et!                         " turn of tab to spaces
 	set tabstop=4 					" an indentation every four columns
 	set softtabstop=4 				" let backspace delete indent
-	set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 	set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 " }
