@@ -79,12 +79,6 @@
     " Insert mode then line feed then normal mode
     let @e='i'
 
-    " White Lion Settings
-    "{
-        :ab kd echo Kohana::debug();
-        :ab kl Kohana::log('error', "{$e->getFile()}: {$e->getLine()}\n{$e->getMessage()}");
-        let @t='itry {} catch(Kohana_Exception $e) {Kohana::log("error", "{$e->getFile()}: {$e->getLine()}\n{$e->getMessage()}");}kkkA	'
-    "}
 "}
 
 " Window and file management 
@@ -189,8 +183,8 @@
 
 " Add .vimrc_append if it exists
 "{
-    let APPEND = expand("~/vim_files/.vimrc_append")
+    let APPEND = expand("~/.vim/.vimrc_append")
 	if filereadable(APPEND)
-		source ~/vim_files/.vimrc_append
+		source ~/.vim/.vimrc_append
 	endif
 "}
