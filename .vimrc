@@ -1,60 +1,87 @@
-syntax enable
-set background=dark
-set t_Co=256
-let g:solarized_termcolors=256
-colorscheme solarized
+" Pathogen
+"{
+    " Ignore list
+    let g:pathogen_disabled = []
+    if v:version < '703'
+        call add(g:pathogen_disabled, 'numbers')
+    endif
+
+    call pathogen#infect()
+	call pathogen#helptags()
+"}
+
+" set up color scheme
+"{
+    syntax enable
+    set background=dark
+    set t_Co=256
+    let g:solarized_termcolors=256
+    colorscheme solarized
+"}
 
 " Spell check
-set spell
-setlocal spellfile+=~/.vim/spell/en.utf-8.add
+"{
+	set spell
+	setlocal spellfile+=~/.vim/spell/en.utf-8.add
+"}
 
-" Only do this part when compiled with support for autocommands
-if has("autocmd")
-  " Enable file type detection
-  filetype on
-   
-  " Customisations based on house-style (arbitrary)
-  autocmd FileType php setlocal ts=4 sts=4 sw=4 noexpandtab
-  autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab
-  autocmd FileType css setlocal ts=4 sts=4 sw=4 noexpandtab
-  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
-   
-  " Treat .rss files as XML
-  autocmd BufNewFile,BufRead *.rss setfiletype xml
-endif
+" Only do this part when compiled with support for autocommands (work in progress)
+"{
+	if has("autocmd")
+		" Enable file type detection
+		filetype on
+		 
+		" Customisations based on house-style (arbitrary)
+		autocmd FileType php setlocal ts=4 sts=4 sw=4 noexpandtab
+		autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab
+		autocmd FileType css setlocal ts=4 sts=4 sw=4 noexpandtab
+		autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+		 
+		" Treat .rss files as XML
+		autocmd BufNewFile,BufRead *.rss setfiletype xml
+		
+		"Only add closetag on appropriate file types"
+		autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
+		autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+	endif
+"}
 
-" normal mode with kj
-imap kj <Esc>
+" Search
+"{
+	" clear search with space bar
+	nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
+	" jumps to search word as you type
+	set incsearch
+	" find as you type search
+	set incsearch
+	" highlight search terms
+	set hlsearch
+	" case insensitive search
+	set ignorecase
+	" set working dir to current file
+	set smartcase
+"}
 
-"navigate tabs
-map <C-m> gt
-map <C-n> gT
+"Misc
+"{
+    " Set directory to current file
+    set autochdir
 
-" Insert mode then line feed then normal mode
-let @e='i'
+    " normal mode with jk
+    :imap kj <Esc>
 
-" calculator in insert mode
-imap <silent> <C-C> <C-R>=string(eval(input("Calculate: ")))<CR> 
+    " calculator in insert mode
+    imap <silent> <C-C> <C-R>=string(eval(input("Calculate: ")))<CR> 
 
-" Save files after accidently forgetting to sudo
-cmap w!! w !sudo tee % >/dev/null
+    " Save files after accidently forgetting to sudo
+    cmap w!! w !sudo tee % >/dev/null
 
-" sets the min widnow height to 0 - only show the file name
-set wmh=0
+    " Insert mode then line feed then normal mode
+    let @e='i'
 
-" clear search with space bar
-nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
+"}
 
-" set working dir to current file
-set autochdir
-
-" jumps to search word as you type
-set incsearch
-
-map gbc yypkA =<Esc>jOscale=2<Esc>:.,+1!bc<CR>kJ
-imap <silent> <C-C> <C-R>=string(eval(input("Calculate: ")))<CR>
-
-" Window and file Managment 
+" Window and file management 
 "{
     " Use tree-mode as default view
     let g:netrw_liststyle=3 
@@ -76,66 +103,91 @@ imap <silent> <C-C> <C-R>=string(eval(input("Calculate: ")))<CR>
 
     " expand current vert split to full width
     map ff <C-w><Bar>
-"}
 
-" Plugins
-"{
-    " Comments plugin
-    source ~/.vim/plugins/comments.vim
+    " sets the min widnow height to 0 - only show the file name
+    set wmh=0
+
+    " navigate tabs
+    map <C-m> gt
+
 "}
 
 " Comment Block formating
 "{
-    " auto format comment blocks
-    set comments=sl:/**,mb:\ *,elx:\ */
-    set formatoptions+=r
+	" auto format comment blocks
+	set comments=sl:/**,mb:\ *,elx:\ */
+	set formatoptions+=r
 "}
 
-" Below from - https://github.com/spf13/spf13-vim/blob/master/.vimrc 
+" Yank rink config
+"{
+	let g:yankring_min_element_length = 2
+	let g:yankring_history_dir = '~/.vim/yanks'
+"}
+" Below from - https://github.com/spf13/spf13-vim/blob/master/.vimrc (partial)
 
 " Vim UI 
 "{
-	set tabpagemax=15 				" only show 15 tabs
-	set showmode                   	" display the current mode
+	" only show 15 tabs
+	set tabpagemax=15
+	" display the current mode
+	set showmode
 
-	set cursorline  				" highlight current line
-	hi cursorline guibg=#333333 	" highlight bg color of current line
-	hi CursorColumn guibg=#333333   " highlight cursor
+	" highlight current line
+	set cursorline
+    " highlight bg color of current line
+	hi cursorline guibg=#333333
+    " highlight cursor
+    hi CursorColumn guibg=#333333
 
 	if has('cmdline_info')
-		set ruler                  	" show the ruler
-		set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
-		set showcmd                	" show partial commands in status line and
+		" show the ruler
+		set ruler
+		" a ruler on steroids
+		set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+		" show partial commands in status line and
+		set showcmd
 	endif
 
-	set backspace=indent,eol,start	" backspace for dummys
-	set linespace=0					" No extra spaces between rows
-	set nu							" Line numbers on
-	set showmatch					" show matching brackets/parenthesis
-	set incsearch					" find as you type search
-	set hlsearch					" highlight search terms
-	set winminheight=0				" windows can be 0 line high 
-	set ignorecase					" case insensitive search
-	set smartcase					" case sensitive when uc present
-	set wildmenu					" show list instead of just completing
-	set wildmode=list:longest,full	" command <Tab> completion, list matches, then longest common part, then all.
-	set whichwrap=b,s,h,l,<,>,[,]	" backspace and cursor keys wrap to
-	set scrolljump=5 				" lines to scroll when cursor leaves screen
-	set scrolloff=3 				" minimum lines to keep above and below cursor
-	set foldenable  				" auto fold code
-	set list
-	set listchars=tab:>.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
-	set invlist
+	" backspace for dummys
+	set backspace=indent,eol,start	
+	" No extra spaces between rows
+	set linespace=0					
+	" Line numbers on
+	set nu
+	" show matching brackets/parenthesis
+	set showmatch
+	" windows can be 0 line high
+	set winminheight=0 
+	" backspace and cursor keys wrap to
+	set whichwrap=b,s,h,l,<,>,[,]
+	" lines to scroll when cursor leaves screen
+	set scrolljump=5
+	" minimum lines to keep above and below cursor
+	set scrolloff=3
 " }
 
 " Formatting 
 "{
-	set nowrap                     	" wrap long lines
-	set autoindent                 	" indent at the same level of the previous line
-    set smartindent
-	set shiftwidth=4               	" use indents of 4 spaces
-   	set et!                         " turn of tab to spaces
-	set tabstop=4 					" an indentation every four columns
-	set softtabstop=4 				" let backspace delete indent
-	set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+	" wrap long lines
+	set nowrap
+	" indent at the same level of the previous line
+	set autoindent
+	set smartindent
+	" use indents of 4 spaces
+	set shiftwidth=4
+	" turn off tab to spaces
+	set et!
+	" an indentation every four columns
+	set tabstop=4
+	" let backspace delete indent
+	set softtabstop=4
 " }
+
+" Add .vimrc_append if it exists
+"{
+    let APPEND = expand("~/.vim/.vimrc_append")
+	if filereadable(APPEND)
+		source ~/.vim/.vimrc_append
+	endif
+"}
