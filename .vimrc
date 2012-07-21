@@ -79,6 +79,9 @@
     " Insert mode then line feed then normal mode
     let @e='i'
 
+    " Set pastetoggle to <F12>
+    set pastetoggle=<F12>
+
 "}
 
 " Window and file management 
