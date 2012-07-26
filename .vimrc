@@ -34,6 +34,7 @@
 		"Only add closetag on appropriate file types"
 		autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 		autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
+
 	endif
 "}
 
@@ -73,6 +74,11 @@
     " Set pastetoggle to <F12>
     set pastetoggle=<F12>
 
+    " Don't create .swp file
+    set noswapfile
+
+    " use visual bell instead of beep
+    set visualbell
 "}
 
 " Window and file management 
@@ -180,7 +186,36 @@
     set noexpandtab
 " }
 
-" Add .vimrc_append if it exists
+" Status Line
+"{
+	"" Clear
+    "set statusline=
+	"" buffer number
+    "set statusline +=%1*\ %n\ %*
+	"" file format
+    "set statusline +=%5*%{&ff}%*
+	"" file type
+    "set statusline +=%3*%y%*
+	"" full path
+    "set statusline +=%4*\ %<%F%*
+	"" modified flag
+    "set statusline +=%2*%m%*
+	"" current line
+    "set statusline +=%1*%=%5l%*
+	"" total lines
+    "set statusline +=%2*/%L%*
+	"" virtual column number
+    "set statusline +=%1*%4v\ %*
+	"" character under cursor"
+    "set statusline +=%2*0x%04B\ %*
+
+    "highlight StatusLine ctermbg=333333
+
+	"" Always show status line"
+    "set laststatus=2
+"}
+
+" Add add extra files if they exist
 "{
     let APPEND = expand("~/.vim/.vimrc_append")
 	if filereadable(APPEND)
