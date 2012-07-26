@@ -31,15 +31,6 @@
 		" Enable file type detection
 		filetype on
 		 
-		" Customisations based on house-style (arbitrary)
-		autocmd FileType php setlocal ts=4 sts=4 sw=4 noexpandtab
-		autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab
-		autocmd FileType css setlocal ts=4 sts=4 sw=4 noexpandtab
-		autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
-		 
-		" Treat .rss files as XML
-		autocmd BufNewFile,BufRead *.rss setfiletype xml
-		
 		"Only add closetag on appropriate file types"
 		autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 		autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
@@ -185,6 +176,8 @@
 	set tabstop=4
 	" let backspace delete indent
 	set softtabstop=4
+    " do not expand tabs to spaces
+    set noexpandtab
 " }
 
 " Add .vimrc_append if it exists
