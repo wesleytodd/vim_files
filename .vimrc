@@ -246,31 +246,7 @@
 "}
 " Status Line
 "{
-	"" Clear
-	"set statusline=
-	"" buffer number
-	"set statusline +=%1*\ %n\ %*
-	"" file format
-	"set statusline +=%5*%{&ff}%*
-	"" file type
-	"set statusline +=%3*%y%*
-	"" full path
-	"set statusline +=%4*\ %<%F%*
-	"" modified flag
-	"set statusline +=%2*%m%*
-	"" current line
-	"set statusline +=%1*%=%5l%*
-	"" total lines
-	"set statusline +=%2*/%L%*
-	"" virtual column number
-	"set statusline +=%1*%4v\ %*
-	"" character under cursor"
-	"set statusline +=%2*0x%04B\ %*
-
-	"highlight StatusLine ctermbg=333333
-
-	"" Always show status line"
-	"set laststatus=2
+	set laststatus=2
 "}
 
 " Add add extra files if they exist
