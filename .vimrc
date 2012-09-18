@@ -11,6 +11,11 @@
 	call pathogen#helptags()
 "}
 
+"Powerline
+"{
+	let g:Powerline_symbols = 'fancy'
+"}
+
 " set up color scheme
 "{
 	syntax enable
@@ -52,8 +57,6 @@
 "{
 	" clear search with space bar
 	nnoremap <silent> <Space> :silent noh<Bar>echo<CR>
-	" jumps to search word as you type
-	set incsearch
 	" find as you type search
 	set incsearch
 	" highlight search terms
