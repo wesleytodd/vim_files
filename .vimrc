@@ -25,6 +25,15 @@
 	colorscheme solarized
 "}
 
+"Session options
+"{
+	" do not store global and local values in a session
+	set ssop-=options
+
+	" do not store folds
+	set ssop-=folds"
+"}
+
 " Spell check
 "{
 	setlocal spell spelllang=en_us
@@ -63,7 +72,6 @@
 	set hlsearch
 	" case insensitive search
 	set ignorecase
-	" set working dir to current file
 	set smartcase
 
 	command! -nargs=+ MyGrep execute 'silent grep! <args>' | copen 33
@@ -72,7 +80,7 @@
 "Misc
 "{
 	" Set directory to current file
-	set autochdir
+	"set autochdir
 
 	" normal mode with jk
 	:imap kj <Esc>
@@ -92,14 +100,26 @@
 	" Don't create .swp file
 	set noswapfile
 
-	" use visual bell instead of beep
-	set visualbell
+	" No visual or audible errors
+	set noerrorbells visualbell t_vb=
+	if has('autocmd')
+		autocmd GUIEnter * set visualbell t_vb=
+	endif
 
 	" set paste toggle
 	noremap <F2> :set invpaste paste?<CR>
 	set pastetoggle=<F2>
 
 "}
+
+" File
+"{
+	" Set utf8 as standard encoding and en_US as the standard language
+	set encoding=utf8
+
+	" Use Unix as the standard file type
+	set ffs=unix,dos,mac
+"} 
 
 "Leader Commands
 "}
