@@ -145,7 +145,7 @@
 	let g:netrw_liststyle=3 
 
 	" Set tree-mode file ignores
-	let g:netrw_list_hide= '.git,.sass-cache,.svn,nbproject'
+	let g:netrw_list_hide= '.sass-cache,.svn,nbproject'
 
 	" preview window shown in a vertically split
 	let g:netrw_preview=1 
