@@ -139,9 +139,6 @@
 	" sets the min widnow height to 0 - only show the file name
 	set wmh=0
 
-	" navigate tabs
-	map <C-m> gt
-
 "}
 
 " Comment Block formating
