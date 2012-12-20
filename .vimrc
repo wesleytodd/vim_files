@@ -86,17 +86,8 @@
 	" normal mode with jk
 	:imap kj <Esc>
 
-	" calculator in insert mode
-	imap <silent> <C-C> <C-R>=string(eval(input("Calculate: ")))<CR> 
-
 	" Save files after accidently forgetting to sudo
 	cmap w!! w !sudo tee % >/dev/null
-
-	" Insert mode then line feed then normal mode
-	let @e='i'
-
-	" Set pastetoggle to <F12>
-	set pastetoggle=<F12>
 
 	" Don't create .swp file
 	set noswapfile
@@ -121,24 +112,6 @@
 	" Use Unix as the standard file type
 	set ffs=unix,dos,mac
 "} 
-
-"Leader Commands
-"}
-	" use ,, for omni completion
-	let mapleader=","
-	inoremap <leader>, <C-x><C-o>
-	set completeopt+=longest
-	autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-	" Select pasted text
-	nnoremap <leader>v V`]
-	noremap <F2> :set invpaste paste?<CR>
-	set pastetoggle=<F2>
-
-	" put new split window on the right
-	set splitright
-"}
 
 " Window and file management
 "{
@@ -178,13 +151,6 @@
 	set formatoptions+=r
 "}
 
-" Yank rink config
-"{
-	let g:yankring_min_element_length = 2
-	let g:yankring_history_dir = '~/.vim/yanks'
-	let g:yankring_zap_keys = 'f F t T / ?'
-	let g:yankring_enabled = 0	" Disables the yankring
-"}
 " Below from - https://github.com/spf13/spf13-vim/blob/master/.vimrc (partial)
 
 " Vim UI
@@ -215,7 +181,7 @@
 	" No extra spaces between rows
 	set linespace=
 	" Line numbers on
-	set nu
+	"set nu
 	" show matching brackets/parenthesis
 	set showmatch
 	" windows can be 0 line high
@@ -243,20 +209,7 @@
 	set tabstop=4
 	" let backspace delete indent
 	set softtabstop=4
-	" do not expand tabs to spaces
-	set noexpandtab
 " }
-
-" Folding
-"{
-	"fold based on indent
-	set foldmethod=indent
-	"deepest fold is 10 levels
-	set foldnestmax=10
-	"don't fold by default
-	set nofoldenable
-	set foldlevel=1
-"}
 
 " Highligts
 "{
