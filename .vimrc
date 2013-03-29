@@ -1,11 +1,22 @@
+"NERDTree
+"{
+	let g:NERDTreeWinSize = 40
+"}
+
+
 " Pathogen
 "{
 	" Ignore list
 	let g:pathogen_disabled = []
 
+	" Powerline is slowing vim down
+	call add(g:pathogen_disabled, 'vim-powerline')
+
 	if v:version < '703'
 		call add(g:pathogen_disabled, 'numbers')
 	endif
+
+	let g:solarized_visibility='low'
 
 	call pathogen#infect()
 	call pathogen#helptags()
@@ -23,6 +34,19 @@
 	set t_Co=256
 	let g:solarized_termcolors=256
 	colorscheme solarized
+	call togglebg#map("<F5>")
+"}
+
+"JSHint
+"{
+    let g:jshintconfig = "$HOME/.jshintrc"
+"}
+
+
+" Command T
+"{
+	set wildignore+=app/cache/**
+	set wildignore+=web/**
 "}
 
 "Session options
@@ -103,6 +127,11 @@
 	set pastetoggle=<F2>
 
 "}
+"
+"GitGutter
+"{
+	highlight clear SignColumn
+"}
 
 " File
 "{
@@ -111,7 +140,35 @@
 
 	" Use Unix as the standard file type
 	set ffs=unix,dos,mac
-"} 
+"}
+
+"Leader Commands
+"}
+	" use ,, for omni completion
+	let mapleader=","
+	inoremap <leader>, <C-x><C-o>
+	set completeopt+=longest
+	autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+	" Select pasted text
+	nnoremap <leader>v V`]
+	noremap <leader>p :set invpaste paste?<CR>
+	set pastetoggle=<F2>
+
+	" put new split window on the right
+	set splitright
+"}
+
+" Invisible Chars
+"{
+	" Shortcut to rapidly toggle `set list`
+	nmap <leader>l :set list!<CR>
+	
+	" Use the same symbols as TextMate for tabstops and EOLs
+	set listchars=trail:☢,tab:\|\ ,eol:¬
+
+"}
 
 " Window and file management
 "{
@@ -158,11 +215,16 @@
 	set showmode
 
 	" highlight current line
-	set cursorline
+	" set cursorline
 	" highlight bg color of current line
-	hi cursorline guibg=#333333
+	" hi cursorline guibg=#333333
 	" highlight cursor
-	hi CursorColumn guibg=#333333
+	" hi CursorColumn guibg=#333333
+
+	" Improves vim cursor speed
+	set nocursorcolumn
+	set nocursorline
+	syntax sync minlines=256
 
 	if has('cmdline_info')
 		" show the ruler
@@ -210,12 +272,12 @@
 
 " Highligts
 "{
-	highlight ExtraWhiteSpace ctermbg=darkgray
+	" highlight ExtraWhiteSpace ctermbg=darkgray
 	" Show trailing whitespace
 	" Show spaces before a tab
 	" Show tabs that are not at the start of a line:
 	" Show spaces used for indenting (so you use only tabs for indenting).
-	match ExtraWhitespace /\s\+$\| \+\ze\t\| [^\t]\zs\t\+\|^\t*\zs \+/
+	" match ExtraWhitespace /\s\+$\| \+\ze\t\| [^\t]\zs\t\+\|^\t*\zs \+/
 
 "}
 " Status Line
