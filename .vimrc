@@ -1,6 +1,7 @@
 "NERDTree
 "{
 	let g:NERDTreeWinSize = 40
+	let NERDTreeShowBookmarks=1
 "}
 
 
