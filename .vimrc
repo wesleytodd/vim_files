@@ -239,7 +239,7 @@
 	" backspace for dummys
 	set backspace=indent,eol,start
 	" No extra spaces between rows
-	set linespace=
+	set linespace=0
 	" Line numbers on
 	"set nu
 	" show matching brackets/parenthesis
