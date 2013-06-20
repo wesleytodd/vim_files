@@ -1,3 +1,10 @@
+"Go
+"{
+	set rtp+=$GOROOT/misc/vim
+	filetype plugin indent on
+	setlocal omnifunc=gocomplete#Complete
+"}
+
 "NERDTree
 "{
 	let g:NERDTreeWinSize = 40
