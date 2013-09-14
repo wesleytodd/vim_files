@@ -134,6 +134,11 @@
 	noremap <F2> :set invpaste paste?<CR>
 	set pastetoggle=<F2>
 
+	" Set mode lines for OSX
+	set modelines=2
+
+	" Map to set filebrowser fixed-width sidebar
+	map <F3> :Vex.<CR> :ex.<CR> :set wfw<CR> AA <C-l>
 "}
 "
 "GitGutter
