@@ -9,6 +9,9 @@
 "{
 	let g:NERDTreeWinSize = 40
 	let NERDTreeShowBookmarks=1
+	let g:NERDTreeWinSize = 40
+	map ,f :NERDTree<CR> <C-w>=
+	autocmd VimEnter * NERDTree
 "}
 
 
