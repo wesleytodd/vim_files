@@ -3,6 +3,7 @@
 	set rtp+=$GOROOT/misc/vim
 	filetype plugin indent on
 	setlocal omnifunc=gocomplete#Complete
+	autocmd BufWritePre *.go Fmt
 "}
 
 "NERDTree
