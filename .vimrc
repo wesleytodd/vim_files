@@ -116,8 +116,17 @@
 
 "Misc
 "{
+	" Capitol Mistakes
+	:command WQ wq
+	:command Wq wq
+	:command W w
+	:command Q q
+
 	" Set directory to current file
 	"set autochdir
+
+	" Mouse interactions
+	"set mouse=a
 
 	" normal mode with jk
 	:imap kj <Esc>
