@@ -15,14 +15,10 @@
 	autocmd VimEnter * NERDTree
 "}
 
-
 " Pathogen
 "{
 	" Ignore list
 	let g:pathogen_disabled = []
-
-	" Powerline is slowing vim down
-	call add(g:pathogen_disabled, 'vim-powerline')
 
 	if v:version < '703'
 		call add(g:pathogen_disabled, 'numbers')
@@ -34,11 +30,6 @@
 	call pathogen#helptags()
 "}
 
-"Powerline
-"{
-	let g:Powerline_symbols = 'fancy'
-"}
-
 " set up color scheme
 "{
 	syntax enable
@@ -47,18 +38,6 @@
 	let g:solarized_termcolors=256
 	colorscheme solarized
 	call togglebg#map("<F5>")
-"}
-
-"JSHint
-"{
-    let g:jshintconfig = "$HOME/.jshintrc"
-"}
-
-
-" Command T
-"{
-	set wildignore+=app/cache/**
-	set wildignore+=web/**
 "}
 
 "Session options
@@ -266,7 +245,7 @@
 	" No extra spaces between rows
 	set linespace=0
 	" Line numbers on
-	"set nu
+	set nu
 	" show matching brackets/parenthesis
 	set showmatch
 	" windows can be 0 line high
@@ -277,6 +256,8 @@
 	set scrolljump=5
 	" minimum lines to keep above and below cursor
 	set scrolloff=3
+	" Hide numbers
+	let g:numbers_exclude = ['nerdtree']
 " }
 
 " Formatting
