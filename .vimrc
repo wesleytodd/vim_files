@@ -37,6 +37,8 @@
 	set t_Co=256
 	let g:solarized_termcolors=256
 	colorscheme solarized
+	" colorscheme PaperColor
+	" set background=light
 	call togglebg#map("<F5>")
 "}
 
@@ -95,6 +97,9 @@
 
 "Misc
 "{
+	" Convert import to require
+	:let @r="0cwvarf'bcw=wirequire($i)"
+
 	" Capitol Mistakes
 	:command WQ wq
 	:command Wq wq
