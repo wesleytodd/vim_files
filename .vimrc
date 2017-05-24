@@ -1,16 +1,10 @@
-"Go
-"{
-	set rtp+=$GOROOT/misc/vim
-	filetype plugin indent on
-	setlocal omnifunc=gocomplete#Complete
-	autocmd BufWritePre *.go Fmt
-"}
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 
 "NERDTree
 "{
-	let g:NERDTreeWinSize = 40
+	let g:NERDTreeWinSize=40
 	let NERDTreeShowBookmarks=1
-	let g:NERDTreeWinSize = 40
+	let g:NERDTreeWinSize=40
 	map ,f :NERDTree<CR> <C-w>=
 	autocmd VimEnter * NERDTree
 "}
@@ -24,10 +18,29 @@
 		call add(g:pathogen_disabled, 'numbers')
 	endif
 
-	let g:solarized_visibility='low'
-
 	call pathogen#infect()
 	call pathogen#helptags()
+"}
+
+" Syntax highlighting
+"{
+	" start of default statusline
+	set statusline=%f\ %h%w%m%r\ 
+
+	" syntastic
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
+
+	" end of default statusline (with ruler)
+	set statusline+=%=%(%l,%c%V\ %y%)
+	set statusline+=\ %{strftime(\"%m/%d/%Y\ %I:%M%P\")}
+
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 0
+	let g:syntastic_javascript_checkers = ["standard"]
 "}
 
 " set up color scheme
@@ -35,6 +48,7 @@
 	syntax enable
 	set background=dark
 	set t_Co=256
+	let g:solarized_visibility='low'
 	let g:solarized_termcolors=256
 	colorscheme solarized
 	" colorscheme PaperColor
@@ -63,20 +77,20 @@
 		" Enable file type detection
 		filetype on
 
-		" Customisations based on house-style (arbitrary)
-		autocmd FileType php setlocal ts=4 sts=4 sw=4 noexpandtab
-		autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab
-		autocmd FileType css setlocal ts=4 sts=4 sw=4 noexpandtab
-		autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
-		autocmd FileType markdown setlocal wrap linebreak
-
 		" Treat .rss files as XML
 		autocmd BufNewFile,BufRead *.rss setfiletype xml
 
-		"Only add closetag on appropriate file types"
+		" Only add closetag on appropriate file types
 		autocmd FileType html,htmldjango,jinjahtml,eruby,mako let b:closetag_html_style=1
 		autocmd FileType html,xhtml,xml,htmldjango,jinjahtml,eruby,mako source ~/.vim/bundle/closetag/plugin/closetag.vim
 
+		" Detect node bin scripts
+		fun! s:DetectNode()
+			if getline(1) == '#!/usr/bin/env node'
+				set ft=javascript
+			endif
+		endfun
+		autocmd BufNewFile,BufRead * call s:DetectNode()
 	endif
 "}
 
@@ -107,7 +121,7 @@
 	:command Q q
 
 	" Set directory to current file
-	"set autochdir
+	" set autochdir
 
 	" Mouse interactions
 	"set mouse=a
@@ -115,7 +129,7 @@
 	" normal mode with jk
 	:imap kj <Esc>
 
-	" Save files after accidently forgetting to sudo
+	" Save files after accidentally forgetting to sudo
 	cmap w!! w !sudo tee % >/dev/null
 
 	" Don't create .swp file
@@ -140,7 +154,7 @@
 "
 "GitGutter
 "{
-	highlight clear SignColumn
+	" highlight clear SignColumn
 "}
 
 " File
@@ -258,9 +272,9 @@
 	" backspace and cursor keys wrap to
 	set whichwrap=b,s,h,l,<,>,[,]
 	" lines to scroll when cursor leaves screen
-	set scrolljump=5
+	set scrolljump=2
 	" minimum lines to keep above and below cursor
-	set scrolloff=3
+	set scrolloff=2
 	" Hide numbers
 	let g:numbers_exclude = ['nerdtree']
 " }
@@ -273,13 +287,13 @@
 	set autoindent
 	set smartindent
 	" don't expand tab to spaces
-	set noexpandtab
+	" set noexpandtab
 	" use indents of 4 spaces
-	set shiftwidth=4
+	" set shiftwidth=4
 	" an indentation every four columns
-	set tabstop=4
+	" set tabstop=4
 	" let backspace delete indent
-	set softtabstop=4
+	" set softtabstop=4
 " }
 
 " Highligts
