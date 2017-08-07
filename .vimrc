@@ -18,7 +18,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 		call add(g:pathogen_disabled, 'numbers')
 	endif
 
-	call pathogen#infect()
+	execute pathogen#infect()
 	call pathogen#helptags()
 "}
 
