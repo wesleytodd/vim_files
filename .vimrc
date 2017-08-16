@@ -2,7 +2,6 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 
 "NERDTree
 "{
-	let g:NERDTreeWinSize=40
 	let NERDTreeShowBookmarks=1
 	let g:NERDTreeWinSize=40
 	map ,f :NERDTree<CR> <C-w>=
@@ -13,11 +12,6 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 "{
 	" Ignore list
 	let g:pathogen_disabled = []
-
-	if v:version < '703'
-		call add(g:pathogen_disabled, 'numbers')
-	endif
-
 	execute pathogen#infect()
 	call pathogen#helptags()
 "}
@@ -89,6 +83,9 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 			if getline(1) == '#!/usr/bin/env node'
 				set ft=javascript
 			endif
+			if getline(1) == '#! /usr/bin/env node'
+				set ft=javascript
+			endif
 		endfun
 		autocmd BufNewFile,BufRead * call s:DetectNode()
 	endif
@@ -149,7 +146,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 	set modelines=2
 
 	" Map to set filebrowser fixed-width sidebar
-	map <F3> :Vex.<CR> :ex.<CR> :set wfw<CR> AA <C-l>
+	map <F3> :NERDTree<CR>
 "}
 "
 "GitGutter
